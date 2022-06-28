@@ -1,0 +1,14 @@
+.imgDownloader-text {
+    margin-top: 25px;
+}
+
+.imgDownloader-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 17em;
+}
+
+.imgDownloader-progress p {
+    margin-left: 6px;
+}

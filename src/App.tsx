@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ArchChoice from "./ArchChoice";
+import ChooseDrive from "./ChooseDrive";
+import DeletionWarning from "./DeletionWarning";
+import ImageFileDownload from "./ImageFileDownload";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import "./App.css";
+
+const Animated = () => {
+  const location = useLocation();
+  
+  /* just a bunch of routes. 
+  The <Transition/> at all of the files is to make transitions between 2 routes smoother so make sure to include them at every route */
+  return (
+    <AnimatePresence exitBeforeEnter>
+      <Routes location={location}
+        key={location.pathname}>
+          <Route path="/" element={<ChooseDrive/>}/>
+          <Route path="/arch-choice" element={<ArchChoice/>}/>
+          <Route path="/deletion-warning" element={<DeletionWarning/>}/>
+          <Route path="/downloading-image-file" element={<ImageFileDownload/>}/>
+        </Routes>
+    </AnimatePresence>
+  );
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <>
+        <Router>
+          <Animated/>
+        </Router>
+      </>
     </div>
   );
 }
